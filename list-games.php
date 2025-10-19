@@ -9,11 +9,16 @@ include("db.php");
 $sql = "SELECT * FROM videogames ORDER BY released_date";
 $results = mysqli_query($mysqli, $sql);
 ?>
-
+<div class="head">
+    
 <form action="search-games.php" method="post">
 <input type="text" name="keywords" placeholder="Search">
 <input type="submit" value="Go!">
 </form>
+
+<a href="add-game-form.php" class="btn btn-primary">Add a game</a>
+
+</div>
 
 <table>
 <?php while($a_row = mysqli_fetch_assoc($results)):?>
