@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ajax demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1>Game search</h1>
+      <form class="row g-3 mb-3">
+        <div class="col-auto">
+          <input type="text" class="form-control" id="searchBox" placeholder="Keywords">
+        </div>
+      </form>	
+      <div id="results"></div>
+    </div>
+  </body>
+</html>
+
+<script>
+  // We "listen" for key pressed in our search box
+  document.getElementById("searchBox").addEventListener("keyup", doSearch);
+
+  // Function called when searching
+  function doSearch() {
+
+    // Get keyword from search box
+    let keywords = document.getElementById("searchBox").value;
+
+    // Call server script, passing our keyword
+    fetch('ajax.php?search=' + keywords)
+
+    // Convert response string to json object
+    .then(response => response.json())
+    .then(response => {
+
+      // Clear result box
+      document.getElementById("results").innerHTML = '';
+
+      // If no result
+      if (response.length === 0) {
+        document.getElementById("results").innerHTML = '<p>No games found.</p>';
+        return;
+      }
+
+      // Loop through data and add to result box
+      response.forEach(game => {
+        document.getElementById("results").innerHTML += 
+          `<div class="card mb-2">
+             <div class="card-body">
+               <h5 class="card-title">${game.game_name}</h5>
+               <p class="card-text">${game.game_description}</p>
+               <p class="text-muted">Released: ${game.released_date} | Rating: ${game.rating}</p>
+             </div>
+           </div>`;
+      });
+    });
+  }
+</script>
