@@ -34,8 +34,8 @@ fetch('https://mi-linux.wlv.ac.uk/~2441631/ajax/ajax.php?search=' + keywords)
 // Clear result box
 document.getElementById("results").innerHTML = '';
 // Loop through data and add to result box
-response.forEach(game => {
-document.getElementById("results").append(game.game_name + ' ');
+response.forEach(car => {
+document.getElementById("results").append(car.car_model + ' ');
 });
 });
 }

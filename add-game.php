@@ -1,14 +1,17 @@
 <?php
 // Read values from the form
-$game_name = $_POST['GameName'];
-$game_description = $_POST['GameDescription'];
-$game_release_date = $_POST['DateReleased'];
-$game_rating = $_POST['GameRating'];
+$car_model = $_POST['CarModel'];
+$car_year = $_POST['CarYear'];
+$car_condition = $_POST['CarCondition'];
+$car_registration = $_POST['CarRegistration'];
+$car_transmission = $_POST['CarTransmission'];
+$fuel_type = $_POST['CarFuelType'];
+$car_price = $_POST['CarPrice'];
 // Connect to database
 include("db.php");
 // Build SQL statement
-$sql = "INSERT INTO videogames(game_name, game_description, released_date, rating)
-VALUE('{$game_name}', '{$game_description}', '{$game_release_date}', '{$game_rating}')";
+$sql = "INSERT INTO devincars(car_model, car_year, car_registration, `condition`, transmission, fuel_type, price)
+VALUES('{$car_model}', '{$car_year}', '{$car_registration}', '{$car_condition}', '{$car_transmission}', '{$fuel_type}', '{$car_price}')";
 // Run SQL statement and report errors
 if(!$mysqli -> query($sql)) {
 echo("<h4>SQL error description: " . $mysqli -> error . "</h4>");
