@@ -17,14 +17,17 @@ $results = mysqli_query($mysqli, $sql);
 
 <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
 
-<form action="search-games.php" method="post" class="d-flex gap-2">
+<!-- <form action="search-games.php" method="post" class="d-flex gap-2">
 <input type="text" name="keywords" placeholder="Search" class="form-control">
 <input type="submit" value="Go!" class="btn btn-dark">
-</form>
+</form> -->
+<div class="col-4">
+<input type="text" id="liveSearch" class="form-control" placeholder="Search Cars">
+</div>
+
 
 <a href="add-game-form.php" class="btn btn-primary">Add a Car</a>
 
-<!-- Dropdown -->
 <div class="dropdown" id="myDropdown">
 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
 Car Models
@@ -32,12 +35,15 @@ Car Models
 <ul class="dropdown-menu" id="myList"></ul>
 </div>
 
-<!-- Modal button -->
 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
 View All Cars
 </button>
 
+<a href="search.html" class="btn btn-primary">Advance Search</a>
+
+
 </div>
+<div class="mt-3s" id="searchResults"></div>
 
 <table class="table table-hover table-bordered">
 <tr>
@@ -116,7 +122,7 @@ myList.appendChild(li);
 </script>
 
 <script>
-// Load modal data
+// Load model data
 const myModalEl = document.getElementById('exampleModal');
 myModalEl.addEventListener('show.bs.modal', event => {
 
@@ -138,6 +144,43 @@ cell1.innerHTML = car.car_model;
 });
 });
 </script>
+<script>
+document.getElementById("liveSearch").addEventListener("keyup", function(){
 
+let keywords = document.getElementById("liveSearch").value;
+
+if(keywords.length === 0){
+document.getElementById("searchResults").innerHTML = '';
+return;
+}
+
+
+fetch('ajax.php?search=' + keywords)
+.then(response => response.json())
+.then(response => {
+let output = '';
+
+if(response.length === 0){
+output = '<p>No cars found</p>';
+document.getElementById("searchResults").innerHTML = output;
+return;
+}
+response.forEach(car => {
+output += 
+`<a href="game-details.php?id=${car.car_id}" class="text-decoration-none text-dark">
+<div class="card mb-2">
+<div class="card-body">
+<h5 class="card-title">${car.car_model}</h5>
+<p class="card-text">Registration: ${car.car_registration}</p>
+<p class="text-muted">year: ${car.car_year} | £${car.price}</p>
+</div>
+</div>
+</a>`;
+
+});
+document.getElementById("searchResults").innerHTML = output;
+});
+});
+</script>
 </body>
 </html>
