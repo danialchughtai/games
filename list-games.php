@@ -65,6 +65,12 @@ View All Cars
 <td><?=$a_row['transmission']?></td>
 <td><?=$a_row['fuel_type']?></td>
 <td>£<?=$a_row['price']?></td>
+<td>
+<a href="update-car-form.php?id=<?=$a_row['car_id']?>" class="btn btn-sm btn-warning">Update</a>
+</td>
+<td>
+    <a href="delete-car.php?id=<?=$a_row['car_id']?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this car?');">Delete</a>
+</td>
 </tr>
 <?php endwhile;?>
 
