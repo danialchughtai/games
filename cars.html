@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My cars</title>
+  </head>
+  <body>
+    <h1>My cars webpage</h1>
+    {{ include('car-navigation.html') }}
+
+    <p>{{ num_rows }} record(s) were returned...</p>
+
+    <table border=1>
+   {% for item in cars %}
+      <tr>
+        <td>{{ item.car_model }}</td>
+        <td>{{ item.car_year }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    {% endfor %}
+    </table>        
+  </body>
+</html>

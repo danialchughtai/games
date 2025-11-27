@@ -27,6 +27,7 @@ $results = mysqli_query($mysqli, $sql);
 
 
 <a href="add-game-form.php" class="btn btn-primary">Add a Car</a>
+<a href="cars-twig.php" class="btn btn-warning">View Cars (Twig Page)</a>
 
 <div class="dropdown" id="myDropdown">
 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
