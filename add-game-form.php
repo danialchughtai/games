@@ -10,7 +10,9 @@ crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
-<h1>Add a Car</h1>
+    <a href="list-games.php" class="btn btn-dark mt-4">← Back to List</a>
+    <h1>Add a Car</h1>
+
 <form action="add-game.php" method="post">
 <div class="mb-3">
 <label for="CarModel" class="form-label">Car Model</label>

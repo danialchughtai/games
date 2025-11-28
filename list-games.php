@@ -59,13 +59,14 @@ View All Cars
 
 <?php while($a_row = mysqli_fetch_assoc($results)):?>
 <tr>
-<td><a href="game-details.php?id=<?=$a_row['car_id']?>"><?=$a_row['car_model']?></a></td>
-<td><?=$a_row['car_year']?></td>
-<td><?=$a_row['car_registration']?></td>
-<td><?=$a_row['condition']?></td>
-<td><?=$a_row['transmission']?></td>
-<td><?=$a_row['fuel_type']?></td>
-<td>£<?=$a_row['price']?></td>
+<td><a href="game-details.php?id=<?=$a_row['car_id']?>"><?=htmlspecialchars($a_row['car_model'])?></a></td>
+<td><?=htmlspecialchars($a_row['car_year'])?></td>
+<td><?=htmlspecialchars($a_row['car_registration'])?></td>
+<td><?=htmlspecialchars($a_row['condition'])?></td>
+<td><?=htmlspecialchars($a_row['transmission'])?></td>
+<td><?=htmlspecialchars($a_row['fuel_type'])?></td>
+<td>£<?=htmlspecialchars($a_row['price'])?></td>
+
 <td>
 <a href="update-car-form.php?id=<?=$a_row['car_id']?>" class="btn btn-sm btn-warning">Update</a>
 </td>

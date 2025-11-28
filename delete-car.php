@@ -2,6 +2,7 @@
 include("db.php");
 
 $id = $_GET['id'];
+$id = intval($id);
 
 $sql = "DELETE FROM devincars WHERE car_id = $id";
 

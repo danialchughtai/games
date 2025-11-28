@@ -4,6 +4,7 @@ include("db.php");
 
 // Read ID from URL
 $id = $_GET['id'];
+$id = intval($id);
 
 // Fetch existing record
 $sql = "SELECT * FROM devincars WHERE car_id = $id";
@@ -16,25 +17,27 @@ $record = mysqli_query($mysqli, $sql)->fetch_assoc();
 <body>
 
 <div class="container mt-4">
+    <a href="list-games.php" class="btn btn-dark mt-4">← Back to List</a>
+
 <h1>Update Car</h1>
 
 <form action="update-car.php" method="post">
 
-<input type="hidden" name="car_id" value="<?=$record['car_id']?>">
+<input type="hidden" name="car_id" value="<?=htmlspecialchars($record['car_id'])?>">
 
 <div class="mb-3">
 <label class="form-label">Car Model</label>
-<input type="text" class="form-control" name="CarModel" value="<?=$record['car_model']?>">
+<input type="text" class="form-control" name="CarModel" value="<?=htmlspecialchars($record['car_model'])?>">
 </div>
 
 <div class="mb-3">
 <label class="form-label">Car Year</label>
-<input type="text" class="form-control" name="CarYear" value="<?=$record['car_year']?>">
+<input type="text" class="form-control" name="CarYear" value="<?=htmlspecialchars($record['car_year'])?>">
 </div>
 
 <div class="mb-3">
 <label class="form-label">Car Registration</label>
-<input type="text" class="form-control" name="CarRegistration" value="<?=$record['car_registration']?>">
+<input type="text" class="form-control" name="CarRegistration" value="<?=htmlspecialchars($record['car_registration'])?>">
 </div>
 
 <div class="mb-3">
@@ -63,7 +66,7 @@ $record = mysqli_query($mysqli, $sql)->fetch_assoc();
 
 <div class="mb-3">
 <label class="form-label">Price</label>
-<input type="number" class="form-control" name="CarPrice" value="<?=$record['price']?>">
+<input type="number" class="form-control" name="CarPrice" value="<?=htmlspecialchars($record['price'])?>">
 </div>
 
 <input type="submit" class="btn btn-primary" value="Update Car">
